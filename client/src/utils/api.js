@@ -1,9 +1,9 @@
 // utils/api.js
 import axios from "axios";
 const apiUrl = import.meta.env.VITE_API_URL;
-
 const BASE_URL = `${apiUrl}/anime`;
-// const BASE_URL = `${import.meta.env.VITE_API_URL}/anime`;
+
+
 
 const api = axios.create({
   baseURL: BASE_URL,
