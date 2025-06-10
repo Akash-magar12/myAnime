@@ -155,23 +155,23 @@ const Navbar = () => {
                 </div>
               </Link>
               <Link
-                to="/browse"
+                to="/genre"
                 onClick={handleLinkClick}
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800/70"
               >
                 <div className="flex items-center gap-2">
                   <Film className="h-5 w-5" />
-                  <span>Browse</span>
+                  <span>Genre</span>
                 </div>
               </Link>
               <Link
-                to="/top-rated"
+                to="/allAnime"
                 onClick={handleLinkClick}
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800/70"
               >
                 <div className="flex items-center gap-2">
                   <Award className="h-5 w-5" />
-                  <span>Top Rated</span>
+                  <span>All Anime</span>
                 </div>
               </Link>
               <div className="flex items-center justify-between px-3 py-2">
