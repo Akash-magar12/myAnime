@@ -10,7 +10,7 @@ const generateToken = (userId, res) => {
     maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
     httpOnly: true,
     sameSite: "None", // ✅ Allow cross-site cookies
-    secure: envVars.NODE_ENV !== "development", // ✅ Must be true for 'None'
+    secure: true, // ✅ Must be true for 'None'
   });
 
   return token; // ! In case you want to use it somewhere (e.g., logs, headers, etc.)
