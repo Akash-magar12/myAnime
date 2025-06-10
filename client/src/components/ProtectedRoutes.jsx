@@ -1,4 +1,3 @@
-// components/ProtectedRoute.jsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -13,24 +12,23 @@ const ProtectedRoute = ({ children }) => {
     const checkAuth = async () => {
       try {
         const res = await axios.get(`${apiUrl}/authCheck`, {
-          withCredentials: true, // Send cookie
+          withCredentials: true, // ✅ ensure cookies are sent
         });
-        if (res.data.success) {
+        if (res.data?.success) {
           setIsAuthenticated(true);
         } else {
           setIsAuthenticated(false);
           navigate("/");
         }
       } catch (err) {
+        console.error("Auth check failed:", err?.response?.data || err.message);
         setIsAuthenticated(false);
         navigate("/");
-        console.log(err);
       }
     };
 
     checkAuth();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate]);
+  }, [navigate, apiUrl]);
 
   if (isAuthenticated === null) return <Loader />;
 
