@@ -14,14 +14,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    profile: {
-      type: String,
-      default: "",
-    },
-    searchHistory: {
-      type: Array,
-      default: [],
-    },
   },
   {
     timestamps: true,

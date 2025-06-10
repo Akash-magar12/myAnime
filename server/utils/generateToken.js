@@ -8,9 +8,9 @@ const generateToken = (userId, res) => {
 
   res.cookie("jwt-anime", token, {
     maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
-    httpOnly: true, //! Prevent JavaScript access (XSS protection)
-    sameSite: "Strict", // Protect against CSRF
-    secure: envVars.NODE_ENV !== "development", // Use HTTPS in production
+    httpOnly: true,
+    sameSite: "None", // ✅ Allow cross-site cookies
+    secure: envVars.NODE_ENV !== "development", // ✅ Must be true for 'None'
   });
 
   return token; // ! In case you want to use it somewhere (e.g., logs, headers, etc.)
