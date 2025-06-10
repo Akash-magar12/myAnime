@@ -27,7 +27,7 @@ const Login = () => {
         withCredentials: true,
       });
       if (response) {
-        toast.success(response.data.message);
+        toast.success(response?.data?.message);
         setData({
           email: "",
           password: "",
@@ -35,12 +35,14 @@ const Login = () => {
         navigate("/home");
         localStorage.setItem(
           "user",
-          JSON.stringify(response.data.user.username)
+          JSON.stringify(response?.data?.user.username)
         );
       }
     } catch (error) {
-      console.log(error.response.data.message);
-      toast.error(error.response.data.message);
+      const message =
+        error.response?.data?.message ||
+        "Something went wrong. Please try again.";
+      toast.error(message);
     }
   };
 

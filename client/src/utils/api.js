@@ -2,6 +2,7 @@
 import axios from "axios";
 
 const BASE_URL = "http://localhost:7000/api/anime";
+// const BASE_URL = `${import.meta.env.VITE_API_URL}/anime`;
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -14,7 +15,7 @@ export const fetchRandomAnime = async () => {
     return response.data.data; // Assuming your backend sends { data: animeObject }
   } catch (error) {
     console.error("fetchRandomAnime error:", error.message);
-  }
+  } 
 };
 // ! All Anime
 export const fetchAllAnime = async (page = 1) => {
