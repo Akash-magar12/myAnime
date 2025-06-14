@@ -11,6 +11,7 @@ import Genre from "./Pages/Genre";
 import CharacterDetail from "./Pages/CharacterDetail";
 import AllCharacters from "./Pages/AllCharacters";
 import AllAnime from "./Pages/AllAnime";
+import NotFound from "./components/NotFound";
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ const App = () => {
         { path: "/popular", element: <AllAnime /> },
         { path: "/mostFavorited", element: <AllAnime /> },
         { path: "/movies", element: <AllAnime /> },
+        {
+          path: "*",
+          element: <NotFound />,
+        },
       ],
     },
   ]);

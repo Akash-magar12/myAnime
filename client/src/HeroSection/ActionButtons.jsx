@@ -3,7 +3,7 @@ import React from "react";
 
 const ActionButtons = ({ getAnime, next }) => {
   return (
-    <div className="flex flex-wrap gap-4 mt-8">
+    <div className="flex flex-wrap gap-4 pb-8 sm:pb-0 mt-8">
       <button
         onClick={next}
         className="px-6 py-3 bg-gray-900/80 border border-gray-600/50 rounded-xl text-white font-medium transition-all duration-300 hover:bg-gray-800 flex items-center gap-2"

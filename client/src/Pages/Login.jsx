@@ -8,13 +8,12 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
+  const [data, setData] = useState({ email: "", password: "" });
+
   const dispatch = useDispatch();
   const apiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));
@@ -28,10 +27,7 @@ const Login = () => {
       });
       if (response) {
         toast.success(response?.data?.message);
-        setData({
-          email: "",
-          password: "",
-        });
+        setData({ email: "", password: "" });
         navigate("/home");
         localStorage.setItem(
           "user",
@@ -61,12 +57,12 @@ const Login = () => {
       </div>
 
       {/* Form Container */}
-      <div className="max-w-lg w-full bg-black/80 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-gray-500/30 relative z-10">
-        {/* Corner Borders */}
-        <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-white/70 rounded-tl-xl" />
-        <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-white/70 rounded-tr-xl" />
-        <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-white/70 rounded-bl-xl" />
-        <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-white/70 rounded-br-xl" />
+      <div className="max-w-lg w-full bg-black/80 backdrop-blur-md p-6 sm:p-8 rounded-2xl shadow-2xl border border-gray-500/30 relative z-10">
+        {/* Always-visible Corner Borders */}
+        <div className="absolute top-0 left-0 w-12 h-12 border-t-2 border-l-2 border-white/70 rounded-tl-xl pointer-events-none z-20" />
+        <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-white/70 rounded-tr-xl pointer-events-none z-20" />
+        <div className="absolute bottom-0 left-0 w-12 h-12 border-b-2 border-l-2 border-white/70 rounded-bl-xl pointer-events-none z-20" />
+        <div className="absolute bottom-0 right-0 w-12 h-12 border-b-2 border-r-2 border-white/70 rounded-br-xl pointer-events-none z-20" />
 
         {/* Header */}
         <div className="text-center mb-8">
@@ -82,14 +78,14 @@ const Login = () => {
               </span>
             </span>
           </h2>
-          <p className="mt-2 text-base sm:text-lg text-gray-400 italic">
+          <p className="mt-2 text-sm sm:text-base text-gray-400 italic">
             Welcome back, fellow otaku
           </p>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="bg-black/90 p-6 rounded-lg border border-gray-500/30 shadow-lg shadow-gray-900/20 space-y-5">
+          <div className="bg-black/90 p-5 sm:p-6 rounded-lg border border-gray-500/30 shadow-lg shadow-gray-900/20 space-y-5">
             {/* Email */}
             <div>
               <label
@@ -148,7 +144,7 @@ const Login = () => {
             </div>
           </div>
 
-          {/* Remember & Forgot */}
+          {/* Forgot Link */}
           <div className="flex items-center justify-between">
             <div className="text-sm">
               <a

@@ -3,7 +3,7 @@ import React from "react";
 
 const AnimeSynopsis = ({ anime }) => {
   return (
-    <div className="mb-6">
+    <div className="mb-6 ">
       <h2 className="text-lg font-medium mb-2 flex items-center gap-2 text-white">
         <Award className="h-5 w-5 text-gray-300" />
         Synopsis

@@ -121,39 +121,6 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-
-          {/* Support */}
-          <div className="col-span-1">
-            <h3 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">
-              Support
-            </h3>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li>
-                <a
-                  href="/faq"
-                  className="hover:text-blue-500 transition-colors"
-                >
-                  FAQ
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/help"
-                  className="hover:text-blue-500 transition-colors"
-                >
-                  Help Center
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/contact"
-                  className="hover:text-blue-500 transition-colors"
-                >
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
 
         {/* Bottom Bar */}

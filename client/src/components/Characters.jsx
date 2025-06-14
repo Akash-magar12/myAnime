@@ -40,17 +40,17 @@ const Characters = () => {
   }
 
   return (
-    <div className="bg-black py-6 px-4 sm:px-6 md:px-10 lg:px-24">
+    <div className="bg-black py-6 px-4 sm:px-6 md:px-10  lg:px-28">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl sm:text-3xl font-bold text-white">
           Top Characters
         </h2>
         <Link
-          to={`/allCharacters`}
-          className="flex items-center gap-2 border border-blue-600 text-blue-400 hover:bg-blue-800 hover:text-white px-4 sm:px-6 py-2 rounded-lg font-semibold transition-all duration-300"
+          to="/allCharacters"
+          className="inline-flex items-center gap-2 text-xs sm:text-base border border-blue-600 text-blue-400 hover:bg-blue-800 hover:text-white px-2 sm:px-5 py-2 rounded-lg font-medium sm:font-semibold transition-all duration-300 whitespace-nowrap"
         >
           View More
-          <ArrowRight size={18} />
+          <ArrowRight size={16} className="shrink-0" />
         </Link>
       </div>
 

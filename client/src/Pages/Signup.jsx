@@ -17,14 +17,15 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));
   };
-
-  const apiUrl = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,10 +48,7 @@ const Signup = () => {
           confirmPassword: "",
         });
         navigate("/home");
-        localStorage.setItem(
-          "user",
-          JSON.stringify(response.data.user.username)
-        );
+        localStorage.setItem("user", JSON.stringify(response.data.user.username));
       }
     } catch (error) {
       console.log(error.response.data.message);
@@ -64,7 +62,7 @@ const Signup = () => {
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{
           backgroundImage:
-            "url('https://img.freepik.com/free-photo/anime-night-sky-illustration_23-2151684333.jpg?ga=GA1.1.632074292.1744693575&semt=ais_hybrid&w=740')",
+            "url('https://img.freepik.com/free-photo/anime-night-sky-illustration_23-2151684333.jpg')",
           filter: "grayscale(100%)",
         }}
       >
@@ -83,26 +81,22 @@ const Signup = () => {
             <div className="absolute -top-1 -left-1 w-10 h-10 bg-gray-500/20 rounded-full blur-md animate-pulse"></div>
             <Cherry className="h-8 w-8 text-white relative z-10" />
           </div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-white">
-            <span className="text-xl font-extrabold tracking-tight text-white">
-              Anime{" "}
-              <span className="text-indigo-300 group-hover:text-indigo-400">
-                Sanctuary
-              </span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
+            Anime{" "}
+            <span className="text-indigo-300 group-hover:text-indigo-400">
+              Sanctuary
             </span>
           </h2>
-          <p className="mt-1 text-sm text-gray-300 italic">
+          <p className="mt-1 text-xs sm:text-sm md:text-base text-gray-300 italic">
             Where otaku dreams come true
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="bg-black/90 p-4 rounded-lg border border-gray-500/30 shadow-md shadow-gray-900/20">
+            {/* Username */}
             <div className="mb-4">
-              <label
-                htmlFor="username"
-                className="block text-xs sm:text-sm font-medium text-gray-200 mb-1"
-              >
+              <label htmlFor="username" className="block text-sm sm:text-base font-medium text-gray-200 mb-1">
                 <div className="flex items-center">
                   <Shield className="h-4 w-4 text-white mr-2" />
                   Hero Name
@@ -114,16 +108,14 @@ const Signup = () => {
                 id="username"
                 name="username"
                 type="text"
-                className="w-full px-3 py-2 bg-gray-900/80 border border-gray-600/50 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                className="w-full px-3 py-2 text-sm sm:text-base bg-gray-900/80 border border-gray-600/50 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
                 placeholder="Your anime persona"
               />
             </div>
 
+            {/* Email */}
             <div className="mb-4">
-              <label
-                htmlFor="email"
-                className="block text-xs sm:text-sm font-medium text-gray-200 mb-1"
-              >
+              <label htmlFor="email" className="block text-sm sm:text-base font-medium text-gray-200 mb-1">
                 <div className="flex items-center">
                   <Mail className="h-4 w-4 text-white mr-2" />
                   Contact Spell
@@ -135,16 +127,14 @@ const Signup = () => {
                 name="email"
                 type="email"
                 value={data.email}
-                className="w-full px-3 py-2 bg-gray-900/80 border border-gray-600/50 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                className="w-full px-3 py-2 text-sm sm:text-base bg-gray-900/80 border border-gray-600/50 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
                 placeholder="your@email.com"
               />
             </div>
 
+            {/* Password */}
             <div className="mb-4">
-              <label
-                htmlFor="password"
-                className="block text-xs sm:text-sm font-medium text-gray-200 mb-1"
-              >
+              <label htmlFor="password" className="block text-sm sm:text-base font-medium text-gray-200 mb-1">
                 <div className="flex items-center">
                   <Heart className="h-4 w-4 text-white mr-2" />
                   Secret Jutsu (Password)
@@ -157,7 +147,7 @@ const Signup = () => {
                   name="password"
                   value={data.password}
                   type={showPassword ? "text" : "password"}
-                  className="w-full px-3 py-2 bg-gray-900/80 border border-gray-600/50 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                  className="w-full px-3 py-2 text-sm sm:text-base bg-gray-900/80 border border-gray-600/50 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
                   placeholder="Create a password"
                 />
                 <button
@@ -174,14 +164,12 @@ const Signup = () => {
               </div>
             </div>
 
+            {/* Confirm Password */}
             <div>
-              <label
-                htmlFor="confirmPassword"
-                className="block text-xs sm:text-sm font-medium text-gray-200 mb-1"
-              >
+              <label htmlFor="confirmPassword" className="block text-sm sm:text-base font-medium text-gray-200 mb-1">
                 <div className="flex items-center">
                   <Heart className="h-4 w-4 text-white mr-2" />
-                  Confirm Secret Jutsu (Password)
+                  Confirm Secret Jutsu
                 </div>
               </label>
               <div className="relative">
@@ -191,7 +179,7 @@ const Signup = () => {
                   value={data.confirmPassword}
                   name="confirmPassword"
                   type={showConfirmPassword ? "text" : "password"}
-                  className="w-full px-3 py-2 bg-gray-900/80 border border-gray-600/50 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                  className="w-full px-3 py-2 text-sm sm:text-base bg-gray-900/80 border border-gray-600/50 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
                   placeholder="Confirm your password"
                 />
                 <button
@@ -209,7 +197,8 @@ const Signup = () => {
             </div>
           </div>
 
-          <div className="flex items-center text-xs text-gray-400">
+          {/* Terms */}
+          <div className="flex items-center text-xs sm:text-sm text-gray-400">
             <input
               checked={agreedToTerms}
               onChange={() => setAgreedToTerms(!agreedToTerms)}
@@ -230,10 +219,11 @@ const Signup = () => {
             </label>
           </div>
 
+          {/* Submit */}
           <div>
             <button
               type="submit"
-              className="w-full py-2 px-4 rounded-md bg-gray-900/80 border border-gray-600/50 text-white text-sm font-medium shadow-md shadow-black/50 transition duration-300 relative overflow-hidden group"
+              className="w-full py-2 px-4 rounded-md bg-gray-900/80 border border-gray-600/50 text-white text-sm sm:text-base font-medium shadow-md shadow-black/50 transition duration-300 relative overflow-hidden group"
             >
               <span className="relative z-10 flex items-center justify-center">
                 <Star className="h-4 w-4 mr-2 group-hover:animate-spin" />
@@ -244,7 +234,8 @@ const Signup = () => {
           </div>
         </form>
 
-        <div className="mt-6 text-center text-xs text-gray-400">
+        {/* Already have account */}
+        <div className="mt-6 text-center text-xs sm:text-sm text-gray-400">
           Already part of our anime world?{" "}
           <button
             onClick={() => dispatch(showLogin())}

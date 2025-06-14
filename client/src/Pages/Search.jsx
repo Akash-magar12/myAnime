@@ -46,27 +46,30 @@ const Searched = () => {
   return (
     <section className="py-16 px-4 md:px-10 lg:px-20 mt-10">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 ">
+        <h1 className="text-3xl md:text-4xl font-bold text-center text-white mb-6 ">
           Discover <span className="text-gray-400">Anime</span>
         </h1>
 
         {/* Enhanced Search Bar */}
-        <div className="relative mb-10">
-          <div className="flex items-center bg-gray-900 border border-gray-800 rounded-lg overflow-hidden shadow-lg">
-            <div className="pl-4 text-gray-400">
-              <Search size={18} />
+        <div className="relative mb-10 w-full max-w-2xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-stretch bg-gray-900 border border-gray-800 rounded-lg overflow-hidden shadow-lg">
+            {/* Icon + Input */}
+            <div className="flex items-center flex-1 px-4 py-3">
+              <Search size={18} className="text-gray-400 mr-2 shrink-0" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onKeyDown={handleKeyPress}
+                placeholder="Search anime titles..."
+                className="w-full bg-transparent text-white placeholder-gray-500 focus:outline-none text-sm sm:text-base"
+              />
             </div>
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={handleSearchChange}
-              onKeyDown={handleKeyPress}
-              placeholder="Search anime titles..."
-              className="flex-grow py-2 px-2 bg-transparent text-white placeholder-gray-500 focus:outline-none text-sm"
-            />
+
+            {/* Search Button */}
             <button
               onClick={fetchSearch}
-              className="bg-gray-800 cursor-pointer hover:bg-gray-700 text-white px-4 py-2 text-sm font-medium transition-all duration-200"
+              className="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 text-sm sm:text-base font-medium transition-all duration-200 w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-gray-700"
             >
               Search
             </button>

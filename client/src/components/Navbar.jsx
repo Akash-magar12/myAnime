@@ -11,6 +11,7 @@ import {
   Home,
   Film,
   Award,
+  User,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../reducers/userSlice";
@@ -34,15 +35,13 @@ const Navbar = () => {
       const response = await axios.post(
         `${apiUrl}/logout`,
         {},
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
       localStorage.removeItem("user");
       toast.success(response.data.message);
       navigate("/");
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
-      console.log(error);
       toast.error("Logout failed");
     }
   };
@@ -53,6 +52,7 @@ const Navbar = () => {
 
   const handleSearchClick = () => {
     navigate("/search");
+    setMenuOpen(false); // also close dropdown on mobile
   };
 
   const handleLinkClick = () => {
@@ -66,7 +66,7 @@ const Navbar = () => {
       <nav className="fixed top-0 left-0 w-full backdrop-blur-md bg-black/80 text-white shadow-md z-50">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            {/* Logo and Brand */}
+            {/* Logo */}
             <div className="flex items-center">
               <Link to="/home" className="flex items-center gap-2 group">
                 <div className="relative">
@@ -82,7 +82,7 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Desktop Navigation Links */}
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
               <Link
                 to="/home"
@@ -93,7 +93,6 @@ const Navbar = () => {
                 <span>Home</span>
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300" />
               </Link>
-
               <Link
                 to="/genre"
                 onClick={handleLinkClick}
@@ -105,18 +104,26 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Right Side - Search, Name, Logout, Menu */}
+            {/* Right Side */}
             <div className="flex items-center gap-4">
+              {/* Search on Desktop only */}
               <button
                 onClick={handleSearchClick}
-                className="p-2 bg-gray-900/80 rounded-full border border-gray-700/50 text-gray-300 hover:text-white transition-all duration-200 hover:border-gray-500"
+                className="hidden md:block p-2 bg-gray-900/80 rounded-full border border-gray-700/50 text-gray-300 hover:text-white transition-all duration-200 hover:border-gray-500"
               >
                 <Search className="h-4 w-4 cursor-pointer" />
               </button>
-              <span className="text-sm text-gray-300">{user}</span>
+
+              {/* Username on Desktop */}
+              <div className="hidden md:flex items-center gap-1 px-3 py-1 bg-gray-700/50 text-sm text-gray-200 rounded-full hover:bg-gray-600 transition">
+                <User className="h-4 w-4" />
+                <span className="truncate">{user}</span>
+              </div>
+
+              {/* Logout button on Desktop */}
               <button
                 onClick={handleLogout}
-                className="px-3 py-1.5 rounded-md bg-gray-900/80 border border-gray-600/50 text-white text-sm transition duration-300 relative overflow-hidden group hidden md:flex items-center gap-1"
+                className="hidden md:flex px-3 py-1.5 rounded-md bg-gray-900/80 border border-gray-600/50 text-white text-sm transition duration-300 relative overflow-hidden group items-center gap-1"
               >
                 <span className="relative z-10 flex items-center">
                   <LogOut className="h-4 w-4 mr-1" />
@@ -125,25 +132,21 @@ const Navbar = () => {
                 <span className="absolute inset-0 h-full w-0 bg-gray-600 transition-all duration-300 group-hover:w-full" />
               </button>
 
-              {/* Mobile Menu Toggle */}
+              {/* Hamburger */}
               <button
                 onClick={toggleMenu}
                 className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white focus:outline-none"
               >
-                {menuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
+                {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             </div>
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Dropdown */}
         {menuOpen && (
           <div className="md:hidden bg-black/90 border-t border-gray-700/50 shadow-lg">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <div className="px-2 pt-3 pb-4 space-y-1 sm:px-3">
               <Link
                 to="/home"
                 onClick={handleLinkClick}
@@ -174,28 +177,41 @@ const Navbar = () => {
                   <span>All Anime</span>
                 </div>
               </Link>
-              <div className="flex items-center justify-between px-3 py-2">
-                <button
-                  onClick={handleSearchClick}
-                  className="flex items-center gap-2 text-gray-300 hover:text-white"
-                >
-                  <Search className="h-5 w-5" />
-                  <span>Search</span>
-                </button>
-                <button
-                  onClick={handleLogout}
-                  className="flex items-center gap-2 text-gray-300 hover:text-white"
-                >
-                  <LogOut className="h-5 w-5" />
-                  <span>Logout</span>
-                </button>
-              </div>
+
+              {/* Search shown only in mobile */}
+              <button
+                onClick={handleSearchClick}
+                className="w-full text-left px-3 py-2 flex items-center gap-2 text-gray-300 hover:text-white hover:bg-gray-800/70 rounded-md"
+              >
+                <Search className="h-5 w-5" />
+                <span>Search</span>
+              </button>
+
+              {/* Logout */}
+              <button
+                onClick={() => {
+                  handleLinkClick();
+                  handleLogout();
+                }}
+                className="w-full text-left px-3 py-2 flex items-center gap-2 text-gray-300 hover:text-white hover:bg-gray-800/70 rounded-md"
+              >
+                <LogOut className="h-5 w-5" />
+                <span>Logout</span>
+              </button>
+
+              {/* Username in mobile dropdown */}
+              {user && (
+                <div className="mt-3 px-3 py-2 flex items-center gap-2 bg-gray-700/40 text-sm text-gray-200 rounded-md">
+                  <User className="h-4 w-4" />
+                  <span className="truncate">{user}</span>
+                </div>
+              )}
             </div>
           </div>
         )}
       </nav>
 
-      {/* Decorative Top Border */}
+      {/* Decorative Border */}
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gray-300/30 to-transparent"></div>
     </div>
   );

@@ -93,7 +93,7 @@ const TopAnime = () => {
     );
 
   return (
-    <div className="min-h-screen relative flex flex-col items-center py-12 px-4 sm:px-6 overflow-hidden">
+    <div className="min-h-screen relative flex flex-col items-center py-12 px-4 sm:px-8  overflow-hidden">
       {/* Header */}
       <div className="relative z-10 w-full max-w-7xl mb-8">
         <h2 className="text-4xl font-bold text-white mb-4">Top Anime</h2>
@@ -121,7 +121,7 @@ const TopAnime = () => {
       </div>
       <Link
         to={tabOptions[activeTab]?.path || "/allAnime"}
-        className="flex items-center mt-10 gap-2 bg-black border border-blue-600 text-blue-400 hover:bg-blue-800 hover:text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300"
+        className="flex text-sm items-center mt-10 gap-2 bg-black border border-blue-600 text-blue-400 hover:bg-blue-800 hover:text-white px-6 py-2 rounded-lg font-semibold transition-all duration-300"
       >
         View More
         <ArrowRight size={18} />
