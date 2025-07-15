@@ -9,7 +9,7 @@ import cookieParser from "cookie-parser";
 const app = express();
 app.use(
   cors({
-    origin: "https://anime-frontend-in62.onrender.com",
+    origin: "https://my-anime-ten.vercel.app",
     credentials: true,
   })
 );
