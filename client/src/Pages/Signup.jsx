@@ -51,7 +51,6 @@ const Signup = () => {
         localStorage.setItem("user", JSON.stringify(response.data.user.username));
       }
     } catch (error) {
-      console.log(error.response.data.message);
       toast.error(error.response.data.message);
     }
   };
